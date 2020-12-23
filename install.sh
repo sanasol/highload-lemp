@@ -30,7 +30,7 @@ cp -r /etc/mysql/ /backup/$now/mysql/
 apt-get purge nginx-core nginx-common nginx -y -q
 apt-get autoremove -y -q
 # Add custom repository for Nginx
-apt-add-repository ppa:hda-me/nginx-stable -y
+#apt-add-repository ppa:hda-me/nginx-stable -y
 # Update list of available packages
 apt-get update -y -q
 # Install custom Nginx package
@@ -43,7 +43,7 @@ apt-get install nginx-module-brotli -y -q
 sed -i "s/^;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/" /etc/php/7.3/fpm/php.ini
 # Create an additional configuration folder for Nginx
 mkdir /etc/nginx/conf.d
-# Download list of bad bots, bad ip's and bad referres
+# Download list of bad bots, bad ipsystemctl status nginx.service's and bad referres
 # https://github.com/mitchellkrogza/nginx-badbot-blocker
 wget -O /etc/nginx/conf.d/blacklist.conf https://raw.githubusercontent.com/mariusv/nginx-badbot-blocker/master/blacklist.conf
 wget -O /etc/nginx/conf.d/blockips.conf https://raw.githubusercontent.com/mariusv/nginx-badbot-blocker/master/blockips.conf
