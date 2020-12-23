@@ -13,7 +13,7 @@ apt-get update -y -q
 # Update installed packages
 apt-get dist-upgrade -y -q
 # Install the most common packages that will be usefull under development environment
-apt-get install zip unzip fail2ban htop sqlite3 nload mlocate nano memcached python-software-properties software-properties-common -y -q
+apt-get install zip unzip fail2ban htop sqlite3 nload mlocate nano memcached software-properties-common -y -q
 # Install Nginx && PHP-FPM stack
 apt-get install php7.3-curl php7.3-fpm php7.3-gd php7.3-mbstring php7.3-opcache php7.3-xml php7.3-sqlite php7.3-mysql php-imagick -y -q
 # Create a folder to backup current installation of Nginx && PHP-FPM
