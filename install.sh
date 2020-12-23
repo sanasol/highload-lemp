@@ -37,8 +37,6 @@ apt-get update -y -q
 apt-get install nginx -y -q
 systemctl unmask nginx.service
 # Install Brottli package for Nginx
-# https://blog.cloudflare.com/results-experimenting-brotli/
-apt-get install nginx-module-brotli -y -q
 # Disable external access to PHP-FPM scripts
 sed -i "s/^;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/" /etc/php/7.3/fpm/php.ini
 # Create an additional configuration folder for Nginx
