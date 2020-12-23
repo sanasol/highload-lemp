@@ -15,7 +15,7 @@ apt-get dist-upgrade -y -q
 # Install the most common packages that will be usefull under development environment
 apt-get install zip unzip fail2ban htop sqlite3 nload mlocate nano memcached python-software-properties software-properties-common -y -q
 # Install Nginx && PHP-FPM stack
-apt-get install php7.3-curl php7.3-fpm php7.3-gd php7.3-mbstring php7.3-mcrypt php7.3-opcache php7.3-xml php7.3-sqlite php7.3-mysql php-imagick -y -q
+apt-get install php7.3-curl php7.3-fpm php7.3-gd php7.3-mbstring php7.3-opcache php7.3-xml php7.3-sqlite php7.3-mysql php-imagick -y -q
 # Create a folder to backup current installation of Nginx && PHP-FPM
 now=$(date +"%Y-%m-%d_%H-%M-%S")
 mkdir /backup/
@@ -154,7 +154,10 @@ sed -i "s/^;opcache.force_restart_timeout=180/opcache.force_restart_timeout=30/"
 iptables -A INPUT -p tcp -m tcp --dport 2812 -j ACCEPT
 # Install a Monit service in order to maintain system fault tolerance
 # Using ver. 1:5.16-2 because of the bug in the last version https://bugs.launchpad.net/ubuntu/+source/monit/+bug/1786910
-apt-get install monit=1:5.16-2 -y -q
+printf "%s\n" "deb http://ftp.de.debian.org/debian buster-backports main" | \
+tee /etc/apt/sources.list.d/buster-backports.list
+apt update
+apt install -t buster-backports monit
 # Create a full backup of default Monit configuration
 now=$(date +"%Y-%m-%d_%H-%M-%S")
 mkdir /backup/$now/
@@ -198,3 +201,5 @@ monit start all
 monit monitor all
 # Get status of processes watched by Monit
 monit status
+
+
